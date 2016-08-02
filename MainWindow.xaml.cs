@@ -27,18 +27,8 @@ namespace Chess
         {
             InitializeComponent();
             //GenerateGrid();
-            string[] inputFile = Environment.GetCommandLineArgs();
-            if(File.Exists(inputFile[1]))
-            {   
-                Parser p = new Parser(ReadFile(inputFile[1]));
-                
-            }
-            else
-            {
-                MessageBox.Show(inputFile[1] + " does not exist");
-                Application.Current.Shutdown();
-            }
             GameBoard gb = new GameBoard();
+            
             
         }
         #region Grid Generation

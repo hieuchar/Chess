@@ -23,12 +23,21 @@ namespace Chess
         };
         protected int piecePlacement = 4;
         protected int pieceCapture = 3;
-        protected int pieceMove = 2;
+        protected int pieceLocation = 2;
+        protected int castling = 4;
+        protected int pieceIndex = 0;
+        protected int pieceColorIndex = 1;
+        protected int pieceYPlacement = 3;
+        protected int pieceXPlacement = 2;
+
         protected string[] fileInfo;
-        public Parser(string[] lines)
+        private char[,] gameBoard;
+        public Parser(string[] lines, char[,] board)
         {
             fileInfo = lines;
+            gameBoard = board;
             SplitLines();
+            
         }
         private void SplitLines()
         {
@@ -43,24 +52,29 @@ namespace Chess
         {
             foreach (string[] lineSplit in instructionLine)
             {
-                if (lineSplit[0].Length == 4)
+                if (lineSplit[0].Length == pieceLocation)
                 {
+                    output.Add(ConvertMovement(lineSplit));
+                }
+                else {
                     foreach (string s in lineSplit)
                     {
-                        if (s.Length == 4)
+                        if (s.Length == piecePlacement)
                         {
-                            output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[1]), ConvertCharacter(s[0]), s.Substring(2)));
+                            output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));
+                            int y = s[pieceYPlacement] - 48;
+                            int x = s[pieceXPlacement] - 97;
+                            Console.WriteLine(y + "," + x  + " " + s[pieceYPlacement] + "," +  s[pieceXPlacement] + s[pieceIndex]);                           
+                            gameBoard[8 - (s[pieceYPlacement] - 48), s[pieceXPlacement] - 97] = s[pieceIndex];                 
+                                                        
                         }
                     }
                 }
-                else if (lineSplit[0].Length == 2)
-                {
-                    output.Add(ConvertMovement(lineSplit));
-                }                
+
             }
             Write();
         }
-        
+
         private string ConvertCharacter(char c)
         {
             return chessPieces[c];
@@ -68,14 +82,14 @@ namespace Chess
         private string ConvertMovement(string[] s)
         {
             string result = "";
-            if (s.Length >= 4)
+            if (s.Length == castling)
             {
                 return "Moves the king from " + s[0] + " to " + s[1] + " and moves the rook from " + s[2] + " to " + s[3];
             }
-            result += string.Format("Move the piece from {0} to {1}", s[0], s[1].Substring(0,2));
-            if (s[1].Length >= 3)
+            result += string.Format("Move the piece from {0} to {1}", s[0], s[1].Substring(0, 2));
+            if (s[1].Length == pieceCapture)
             {
-                result += string.Format(" and captures the piece at {0}", s[1].Substring(0,2));
+                result += string.Format(" and captures the piece at {0}", s[1].Substring(0, 2));
             }
             return result;
         }
