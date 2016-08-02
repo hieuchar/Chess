@@ -65,7 +65,7 @@ namespace Chess
                             int y = s[pieceYPlacement] - 48;
                             int x = s[pieceXPlacement] - 97;
                             Console.WriteLine(y + "," + x  + " " + s[pieceYPlacement] + "," +  s[pieceXPlacement] + s[pieceIndex]);                           
-                            gameBoard[8 - (s[pieceYPlacement] - 48), s[pieceXPlacement] - 97] = s[pieceIndex];                 
+                            gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = s[pieceIndex];                 
                                                         
                         }
                     }
