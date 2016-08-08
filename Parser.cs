@@ -70,8 +70,17 @@ namespace Chess
                     {
                         if (s.Length == piecePlacement)
                         {
+<<<<<<< HEAD
                             output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));                            
                             gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = Piece.GeneratePiece(s);      
+=======
+                            output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));
+                            int y = s[pieceYPlacement] - 48;
+                            int x = s[pieceXPlacement] - 97;
+                            Console.WriteLine(y + "," + x  + " " + s[pieceYPlacement] + "," +  s[pieceXPlacement] + s[pieceIndex]);                           
+                            gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = s[pieceIndex];                 
+                                                        
+>>>>>>> 893ceef9de7f6f331ae5faaecdb416c792150e69
                         }
                     }
                 }
