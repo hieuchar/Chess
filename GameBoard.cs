@@ -59,7 +59,7 @@ namespace Chess
         {
             if (!CheckSameColor(Location, Destination))
             {
-                if(!CheckStraightCollision(Location, Destination)) return true;
+                if (!CheckStraightCollision(Location, Destination)) return true;
             }
             return false;
         }
@@ -78,7 +78,7 @@ namespace Chess
             int startXLocation = Location[0] - 97;
             int startYLocation = Location[1] - 49;
             int destXLocation = Destination[0] - 97;
-            int destYLocation = Destination[1] - 49;            
+            int destYLocation = Destination[1] - 49;
             if (startXLocation == destXLocation)
             {
                 if (startYLocation < destYLocation)
@@ -87,10 +87,7 @@ namespace Chess
                     {
                         if (board[startYLocation + i, startXLocation] != null)
                         {
-                            if ((char)(startXLocation + 97) + "" + (char)(startYLocation + i + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -100,10 +97,7 @@ namespace Chess
                     {
                         if (board[startYLocation - i, startXLocation] != null)
                         {
-                            if ((char)(startXLocation + 97) + "" + (char)(startYLocation - i + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -116,10 +110,7 @@ namespace Chess
                     {
                         if (board[startYLocation, startXLocation + i] != null)
                         {
-                            if ((char)(startXLocation + i + 97) + "" + (char)(startYLocation + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -129,10 +120,7 @@ namespace Chess
                     {
                         if (board[startYLocation, startXLocation + i] != null)
                         {
-                            if ((char)(startXLocation - i + 97) + "" + (char)(startYLocation + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -153,10 +141,7 @@ namespace Chess
                     {
                         if (board[startYLocation + i, startXLocation + i] != null)
                         {
-                            if ((char)(startXLocation + i + 97) + "" + (char)(startYLocation + i + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -166,10 +151,7 @@ namespace Chess
                     {
                         if (board[startYLocation + i, startXLocation - i] != null)
                         {
-                            if ((char)(startXLocation - i + 97) + "" + (char)(startYLocation + i + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -182,10 +164,7 @@ namespace Chess
                     {
                         if (board[startYLocation - i, startXLocation + i] != null)
                         {
-                            if ((char)(startXLocation + i + 97) + "" + (char)(startYLocation - i + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -195,10 +174,7 @@ namespace Chess
                     {
                         if (board[startYLocation - i, startXLocation - i] != null)
                         {
-                            if ((char)(startXLocation - i + 97) + "" + (char)(startYLocation - i + 49) != Destination)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }

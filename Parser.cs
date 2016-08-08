@@ -21,16 +21,7 @@ namespace Chess
             {'P', "Pawn" },
             {'l', "White" },
             {'d', "Black" }
-        };
-        private Dictionary<char, ChessPiece> pieceList = new Dictionary<char, ChessPiece>()
-        {
-            {'Q', ChessPiece.Queen },
-            {'K', ChessPiece.King },
-            {'N', ChessPiece.Knight},
-            {'P', ChessPiece.Pawn},
-            {'R' ,ChessPiece.Rook},
-            {'B',ChessPiece.Bishop}
-        };
+        };        
         protected int piecePlacement = 4;
         protected int pieceCapture = 3;
         protected int pieceLocation = 2;
@@ -70,17 +61,9 @@ namespace Chess
                     {
                         if (s.Length == piecePlacement)
                         {
-<<<<<<< HEAD
                             output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));                            
                             gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = Piece.GeneratePiece(s);      
-=======
-                            output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));
-                            int y = s[pieceYPlacement] - 48;
-                            int x = s[pieceXPlacement] - 97;
-                            Console.WriteLine(y + "," + x  + " " + s[pieceYPlacement] + "," +  s[pieceXPlacement] + s[pieceIndex]);                           
-                            gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = s[pieceIndex];                 
-                                                        
->>>>>>> 893ceef9de7f6f331ae5faaecdb416c792150e69
+
                         }
                     }
                 }
@@ -122,6 +105,10 @@ namespace Chess
                     {
                         result += string.Format("Movement from {0} to {1} is not valid", s[0], s[1].Substring(0, 2));
                     }
+                }
+                else
+                {
+                    result += string.Format("{0} is empty", s[0]);
                 }
             }            
             return result;
