@@ -2,3 +2,8 @@ Rla1 Rlh1 Rda8 Rdh8
 Nlb1 Nlg1 Ndb8 Ndg8
 Blc1 Blf1 Bdc8 Bdf8
 Kld1 Kdd8 Qle1 Qde8
+
+
+e1 e7
+e7 d6
+d6 a3
