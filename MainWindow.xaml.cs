@@ -27,7 +27,7 @@ namespace Chess
         {
             InitializeComponent();
             //GenerateGrid();
-            GameBoard gb = new GameBoard();
+            GameBoard.StartBoard();
             
             
         }

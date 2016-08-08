@@ -1,15 +1,4 @@
-
 Rla1 Rlh1 Rda8 Rdh8
 Nlb1 Nlg1 Ndb8 Ndg8
 Blc1 Blf1 Bdc8 Bdf8
 Kld1 Kdd8 Qle1 Qde8
-Pla2 Plb2 Plc2 Pld2 Ple2 Plf2 Plg2 Plh2
-Pda7 Pdb7 Pdc7 Pdd7 Pde7 Pdf7 Pdg7 Pdh7
-
-c4 d6* 
-d8 h4 
-e1 g1 h1 f1 
-
-d8 h4
-c4 d6*
-e1 g1 h1 f1
