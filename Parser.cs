@@ -54,7 +54,7 @@ namespace Chess
             {
                 if (lineSplit[0].Length == pieceLocation)
                 {
-                    output.Add(ConvertMovement(lineSplit));
+                    ConvertMovement(lineSplit);
                 }
                 else {
                     foreach (string s in lineSplit)
@@ -69,7 +69,7 @@ namespace Chess
                 }
 
             }
-            Write();
+            //Write();
         }
 
         private string ConvertCharacter(char c)
@@ -100,6 +100,8 @@ namespace Chess
                         {
                             result += string.Format(" and captures the piece at {0}", s[1].Substring(0, 2));
                         }
+                        Console.WriteLine(result);
+                        GameBoard.GenerateBoard();
                     }
                     else
                     {
