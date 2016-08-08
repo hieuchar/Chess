@@ -21,8 +21,7 @@ namespace Chess
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int gridSize = 8;
-        private Button[,] gameBoard = new Button[8,8];
+        
         public MainWindow()
         {
             InitializeComponent();

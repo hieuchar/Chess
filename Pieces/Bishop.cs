@@ -24,20 +24,14 @@ namespace Chess.Pieces
                 {
                     return false;
                 }
-                for(int i = 1; i <= Math.Abs(startXLocation - destXLocation); i++)
+                if (Math.Abs(startXLocation - destXLocation) != Math.Abs(startYLocation - destYLocation))
                 {
-                    if(startXLocation + i == destXLocation || startXLocation - i == destXLocation)
+                    if (!GameBoard.CheckDiagonalCollision(Location, Destination))
                     {
-                        if (startYLocation + i == destYLocation || startYLocation - i == destYLocation)
-                        {
-                            if (!GameBoard.CheckDiagonalCollision(Location, Destination))
-                            {
-                                Location = Destination;
-                                return true;
-                            }
-                        }
+                        Location = Destination;
+                        return true;
                     }
-                }               
+                }
             }
             return false;
 
