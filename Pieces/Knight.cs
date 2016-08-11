@@ -15,27 +15,7 @@ namespace Chess.Pieces
 
         public override bool CheckValidMove(string Destination)
         {
-            int startXLocation = Location[0] - 97;
-            int startYLocation = Location[1] - 49;
-            int destXLocation = Destination[0] - 97;
-            int destYLocation = Destination[1] - 49;
-            if(Math.Abs(startXLocation - destXLocation) == 2)
-            {
-                if (Math.Abs(startYLocation - destYLocation) == 1)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else if (Math.Abs(startYLocation - destYLocation) == 2)
-            {
-                if (Math.Abs(startXLocation - destXLocation) == 1)
-                {
-                    return true;
-                }
-                else return false;
-            }
-            return false;
+            return MoveValidity.CheckKnightMove(Location, Destination);
         }
     }
 }

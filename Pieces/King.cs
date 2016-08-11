@@ -14,20 +14,7 @@ namespace Chess.Pieces
         }
         public override bool CheckValidMove(string Destination)
         {
-            int startXLocation = Location[0] - 97;
-            int startYLocation = Location[1] - 49;
-            int destXLocation = Destination[0] - 97;
-            int destYLocation = Destination[1] - 49;
-            if (Math.Abs(startXLocation - destXLocation) > 1 || Math.Abs(startYLocation - destYLocation) > 1)
-            {
-                return false;
-            }
-            if( GameBoard.CheckValidMove(Location, Destination))
-            {
-                Location = Destination;
-                return true;
-            }
-            return false;
+            return MoveValidity.CheckKingMove(Location, Destination);
         }
     }
 }

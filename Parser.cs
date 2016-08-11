@@ -21,7 +21,7 @@ namespace Chess
             {'P', "Pawn" },
             {'l', "White" },
             {'d', "Black" }
-        };        
+        };
         protected int piecePlacement = 4;
         protected int pieceCapture = 3;
         protected int pieceLocation = 2;
@@ -37,7 +37,7 @@ namespace Chess
         {
             fileInfo = lines;
             gameBoard = board;
-            SplitLines();            
+            SplitLines();
         }
         private void SplitLines()
         {
@@ -61,13 +61,12 @@ namespace Chess
                     {
                         if (s.Length == piecePlacement)
                         {
-                            output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));                            
-                            gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = Piece.GeneratePiece(s);      
+                            output.Add(string.Format("Place the {0} {1} on {2}", ConvertCharacter(s[pieceColorIndex]), ConvertCharacter(s[pieceIndex]), s.Substring(pieceLocation)));
+                            gameBoard[(s[pieceYPlacement] - 49), s[pieceXPlacement] - 97] = Piece.GeneratePiece(s);
 
                         }
                     }
                 }
-
             }
             //Write();
         }
@@ -76,44 +75,53 @@ namespace Chess
         {
             return chessPieces[c];
         }
-        private string ConvertMovement(string[] s)
+        private void ConvertMovement(string[] s)
+
         {
+            int firstPieceX = (s[0][0]) - 97;
+            int firstPieceY = (s[0][1]) - 49;
+            int secondPieceX = (s[1][0]) - 97;
+            int secondPieceY = (s[1][1]) - 49;
             string result = "";
             if (s.Length == castling)
             {
-                return "Moves the king from " + s[0] + " to " + s[1] + " and moves the rook from " + s[2] + " to " + s[3];
+                Console.WriteLine("Moves the king from " + s[0] + " to " + s[1] + " and moves the rook from " + s[2] + " to " + s[3]);
             }
             else {
-               
-                int firstPieceX = (s[0][0]) - 97;
-                int firstPieceY = (s[0][1]) - 49;
-                int secondPieceX = (s[1][0]) - 97;
-                int secondPieceY = (s[1][1]) - 49;
+
                 if (gameBoard[firstPieceY, firstPieceX] != null)
                 {
-                    if (gameBoard[firstPieceY, firstPieceX].CheckValidMove(s[1].Substring(0, 2)))
+                    if (CheckTurn.CheckValidTurn(gameBoard[firstPieceY, firstPieceX]))
                     {
-                        gameBoard[secondPieceY, secondPieceX] = gameBoard[firstPieceY, firstPieceX];
-                        gameBoard[firstPieceY, firstPieceX] = null;
-                        result += string.Format("Move the piece from {0} to {1}", s[0], s[1].Substring(0, 2));
-                        if (s[1].Length == pieceCapture)
+                        if (gameBoard[firstPieceY, firstPieceX].CheckValidMove(s[1].Substring(0, 2)))
                         {
-                            result += string.Format(" and captures the piece at {0}", s[1].Substring(0, 2));
+                            gameBoard[secondPieceY, secondPieceX] = gameBoard[firstPieceY, firstPieceX];
+                            gameBoard[firstPieceY, firstPieceX] = null;
+                            result += string.Format("Move the piece from {0} to {1}", s[0], s[1].Substring(0, 2));
+                            if (s[1].Length == pieceCapture)
+                            {
+                                result += string.Format(" and captures the piece at {0}", s[1].Substring(0, 2));
+                            }
+                            CheckTurn.ChangeTurn();
+                            Console.WriteLine(result);
+                            GameBoard.GenerateBoard();
                         }
-                        Console.WriteLine(result);
-                        GameBoard.GenerateBoard();
+                        else
+                        {
+                            Console.WriteLine(string.Format("Movement from {0} to {1} is not valid", s[0], s[1].Substring(0, 2)));
+                        }
                     }
                     else
                     {
-                        result += string.Format("Movement from {0} to {1} is not valid", s[0], s[1].Substring(0, 2));
-                    }
+                        Console.WriteLine("Not that piece's turn to move");
+                    }                  
                 }
                 else
                 {
-                    result += string.Format("{0} is empty", s[0]);
+                    Console.WriteLine(string.Format("{0} is empty", s[0]));
                 }
-            }            
-            return result;
+
+            }
         }
         private void Write()
         {

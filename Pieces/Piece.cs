@@ -50,7 +50,12 @@ namespace Chess.Pieces
         }
         public override string ToString()
         {
-            return pieces[PieceType] + "";
+            if(Color == PieceColor.White)
+            {
+                return pieces[PieceType] + "";
+            }
+            else return (pieces[PieceType] + "").ToLower();
+
         }
     }
     

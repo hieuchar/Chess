@@ -26,7 +26,7 @@ namespace Chess
                 MessageBox.Show(inputFile[1] + " does not exist");
                 Application.Current.Shutdown();
             }
-            //GenerateBoard();
+            GenerateBoard();
         }
         public static void GenerateBoard()
         {
