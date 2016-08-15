@@ -65,20 +65,20 @@ namespace Chess
         }
         public static bool CheckSameColor(string Location, string Destination)
         {
-            int startXLocation = Location[0] - 97;
-            int startYLocation = Location[1] - 49;
-            int destXLocation = Destination[0] - 97;
-            int destYLocation = Destination[1] - 49;
+            int startXLocation = ConvertFromAsciiLetter(Location[0]);
+            int startYLocation = ConvertFromAsciiNumber(Location[1]);
+            int destXLocation = ConvertFromAsciiLetter(Destination[0]);
+            int destYLocation = ConvertFromAsciiNumber(Destination[1]);
             if (board[destYLocation, destXLocation] != null)
                 return (board[startYLocation, startXLocation].Color == board[destYLocation, destXLocation].Color);
             else return false;
         }
         public static bool CheckStraightCollision(string Location, string Destination)
         {
-            int startXLocation = Location[0] - 97;
-            int startYLocation = Location[1] - 49;
-            int destXLocation = Destination[0] - 97;
-            int destYLocation = Destination[1] - 49;
+            int startXLocation = ConvertFromAsciiLetter(Location[0]);
+            int startYLocation = ConvertFromAsciiNumber(Location[1]);
+            int destXLocation = ConvertFromAsciiLetter(Destination[0]);
+            int destYLocation = ConvertFromAsciiNumber(Destination[1]);
             if (startXLocation == destXLocation)
             {
                 if (startYLocation < destYLocation)
@@ -118,7 +118,7 @@ namespace Chess
                 {
                     for (int i = 1; i < startXLocation - destXLocation; i++)
                     {
-                        if (board[startYLocation, startXLocation + i] != null)
+                        if (board[startYLocation, startXLocation - i] != null)
                         {
                             return true;
                         }
@@ -129,10 +129,10 @@ namespace Chess
         }
         public static bool CheckDiagonalCollision(string Location, string Destination)
         {
-            int startXLocation = Location[0] - 97;
-            int startYLocation = Location[1] - 49;
-            int destXLocation = Destination[0] - 97;
-            int destYLocation = Destination[1] - 49;
+            int startXLocation = ConvertFromAsciiLetter(Location[0]);
+            int startYLocation = ConvertFromAsciiNumber(Location[1]);
+            int destXLocation = ConvertFromAsciiLetter(Destination[0]);
+            int destYLocation = ConvertFromAsciiNumber(Destination[1]);
             if (startYLocation < destYLocation)
             {
                 if (startXLocation < destXLocation)
@@ -180,6 +180,28 @@ namespace Chess
                 }
             }
             return false;
+        }
+        public static int ConvertFromAsciiLetter(int target)
+        {
+            return target - 97;
+        }
+        public static int ConvertFromAsciiNumber(int target)
+        {
+            return target - 49;
+        }
+        public static Piece GetOpposingKing(PieceColor c)
+        {
+            foreach(Piece p in board)
+            {
+                if (p != null)
+                {
+                    if (p.PieceType == ChessPiece.King && p.Color != c)
+                    {
+                        return p;
+                    }
+                }
+            }
+            return null;
         }
     }
 }

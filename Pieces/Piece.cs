@@ -8,7 +8,7 @@ namespace Chess.Pieces
 {
     public abstract class Piece
     {
-        public ChessPiece PieceType { get; set; }
+        public ChessPiece PieceType { get; set; }        
         public PieceColor Color { get; set; }
         public string Location { get; set; }
         private Dictionary<ChessPiece, char> pieces = new Dictionary<ChessPiece, char>()
@@ -25,11 +25,10 @@ namespace Chess.Pieces
             PieceType = piece;
             Color = pc;
             Location = loc;
-        }
+        }        
         public abstract bool CheckValidMove(string destination);
         public static Piece GeneratePiece(string gen)
         {
-
             switch(gen[0])
             {
                 case 'Q':
@@ -55,7 +54,14 @@ namespace Chess.Pieces
                 return pieces[PieceType] + "";
             }
             else return (pieces[PieceType] + "").ToLower();
-
+        }
+        public string GetOpposing()
+        {
+            if (Color.Equals(PieceColor.White))
+            {
+                return "Black";
+            }
+            else return "White";
         }
     }
     

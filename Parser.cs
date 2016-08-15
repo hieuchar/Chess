@@ -76,7 +76,6 @@ namespace Chess
             return chessPieces[c];
         }
         private void ConvertMovement(string[] s)
-
         {
             int firstPieceX = (s[0][0]) - 97;
             int firstPieceY = (s[0][1]) - 49;
@@ -101,9 +100,13 @@ namespace Chess
                             if (s[1].Length == pieceCapture)
                             {
                                 result += string.Format(" and captures the piece at {0}", s[1].Substring(0, 2));
+                            }                                                      
+                            Console.WriteLine(result);
+                            if (MoveValidity.CheckForCheck(gameBoard[secondPieceY, secondPieceX]))
+                            {
+                                Console.WriteLine("{0} {1} has put {2} king into check.", gameBoard[secondPieceY, secondPieceX].Color, gameBoard[secondPieceY, secondPieceX].PieceType, gameBoard[secondPieceY, secondPieceX].GetOpposing());
                             }
                             CheckTurn.ChangeTurn();
-                            Console.WriteLine(result);
                             GameBoard.GenerateBoard();
                         }
                         else

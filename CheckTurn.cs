@@ -13,8 +13,9 @@ namespace Chess
         private static PieceColor turnColor = PieceColor.White;
         public static bool CheckValidTurn(Piece p)
         {
-            bool valid = p.Color == turnColor;            
-            return valid;
+            //bool valid = p.Color == turnColor;            
+            //return valid;
+            return true;
         }
         public static void ChangeTurn()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chess.Pieces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,11 +25,10 @@ namespace Chess
                 {
                     return false;
                 }
-                if (Math.Abs(startXLocation - destXLocation) != Math.Abs(startYLocation - destYLocation))
+                if (Math.Abs(startXLocation - destXLocation) == Math.Abs(startYLocation - destYLocation))
                 {
                     if (!GameBoard.CheckDiagonalCollision(Location, Destination))
-                    {
-                        Location = Destination;
+                    {                        
                         return true;
                     }
                 }
@@ -46,8 +46,7 @@ namespace Chess
                 return false;
             }
             else if (GameBoard.CheckValidMove(Location, Destination))
-            {
-                Location = Destination;
+            {                
                 return true;
             }
             return false;
@@ -91,8 +90,7 @@ namespace Chess
                 return false;
             }
             if (GameBoard.CheckValidMove(Location, Destination))
-            {
-                Location = Destination;
+            {                
                 return true;
             }
             return false;
@@ -100,6 +98,15 @@ namespace Chess
         public static bool CheckPawnMove(string Location, string Destination)
         {
             throw new NotImplementedException();
+        }
+        public static bool CheckForCheck(Piece c)
+        {
+            if (c.PieceType != ChessPiece.King)
+            {
+                Piece king = GameBoard.GetOpposingKing(c.Color);
+                return c.CheckValidMove(king.Location);
+            }
+            else return false;
         }
 
     }

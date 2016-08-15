@@ -4,6 +4,5 @@ Nlb1 Nlg1 Ndb8 Ndg8
 Blc1 Blf1 Bdc8 Bdf8
 Kld1 Kdd8 Qle1 Qde8
 
-a1 a8
-a8 a7
-b8 b7
+c1 g5
+g5 e7
