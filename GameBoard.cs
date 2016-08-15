@@ -13,7 +13,7 @@ namespace Chess
     {
         private static int boardLength = 8;
         private static int boardHeight = 8;
-        private static Piece[,] board = new Piece[boardHeight, boardLength];
+        public static Piece[,] board = new Piece[boardHeight, boardLength];
         public static void StartBoard()
         {
             string[] inputFile = Environment.GetCommandLineArgs();
