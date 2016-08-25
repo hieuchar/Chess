@@ -14,6 +14,13 @@ namespace Chess
         private static int boardLength = 8;
         private static int boardHeight = 8;
         public static Piece[,] board = new Piece[boardHeight, boardLength];
+        public static Dictionary<string, ChessPiece> pawnPromotion = new Dictionary<string, ChessPiece>()
+        {
+            {"Q", ChessPiece.Queen },
+            {"B", ChessPiece.Bishop},
+            {"N", ChessPiece.Knight},
+            {"R", ChessPiece.Rook}           
+        };
         public static void StartBoard()
         {
             string[] inputFile = Environment.GetCommandLineArgs();
@@ -55,7 +62,7 @@ namespace Chess
         {
             return File.ReadAllLines(fileName);
         }
-        public static bool CheckValidMove(string Location, string Destination)
+        public static bool CheckValidMove(Location Location, Location Destination)
         {
             if (!CheckSameColor(Location, Destination))
             {
@@ -63,22 +70,34 @@ namespace Chess
             }
             return false;
         }
-        public static bool CheckSameColor(string Location, string Destination)
+        public static void PromotePawn(Piece pawn)
         {
-            int startXLocation = ConvertFromAsciiLetter(Location[0]);
-            int startYLocation = ConvertFromAsciiNumber(Location[1]);
-            int destXLocation = ConvertFromAsciiLetter(Destination[0]);
-            int destYLocation = ConvertFromAsciiNumber(Destination[1]);
+            PieceColor tC = pawn.Color;
+            Location tL = pawn.Location;
+            Console.WriteLine("Please select a piece type to promote your pawn to");
+            Console.WriteLine(" 'Q' : Queen");
+            Console.WriteLine(" 'B' : Bishop");
+            Console.WriteLine(" 'N' : Knight");
+            Console.WriteLine(" 'R' : Rook");
+            ChessPiece s = pawnPromotion[Console.ReadLine().ToUpper()];
+            GameBoard.board[tL.Y, tL.X] = Piece.GeneratePiece(s, tC, tL);
+        }
+        public static bool CheckSameColor(Location Location, Location Destination)
+        {
+            int startXLocation = Location.X;
+            int startYLocation = Location.Y;
+            int destXLocation = Destination.X;
+            int destYLocation = Destination.Y;
             if (board[destYLocation, destXLocation] != null)
                 return (board[startYLocation, startXLocation].Color == board[destYLocation, destXLocation].Color);
             else return false;
         }
-        public static bool CheckStraightCollision(string Location, string Destination)
+        public static bool CheckStraightCollision(Location Location, Location Destination)
         {
-            int startXLocation = ConvertFromAsciiLetter(Location[0]);
-            int startYLocation = ConvertFromAsciiNumber(Location[1]);
-            int destXLocation = ConvertFromAsciiLetter(Destination[0]);
-            int destYLocation = ConvertFromAsciiNumber(Destination[1]);
+            int startXLocation = Location.X;
+            int startYLocation = Location.Y;
+            int destXLocation = Destination.X;
+            int destYLocation = Destination.Y;
             if (startXLocation == destXLocation)
             {
                 if (startYLocation < destYLocation)
@@ -127,12 +146,12 @@ namespace Chess
             }
             return false;
         }
-        public static bool CheckDiagonalCollision(string Location, string Destination)
+        public static bool CheckDiagonalCollision(Location Location, Location Destination)
         {
-            int startXLocation = ConvertFromAsciiLetter(Location[0]);
-            int startYLocation = ConvertFromAsciiNumber(Location[1]);
-            int destXLocation = ConvertFromAsciiLetter(Destination[0]);
-            int destYLocation = ConvertFromAsciiNumber(Destination[1]);
+            int startXLocation = Location.X;
+            int startYLocation = Location.Y;
+            int destXLocation = Destination.X;
+            int destYLocation = Destination.Y;
             if (startYLocation < destYLocation)
             {
                 if (startXLocation < destXLocation)
@@ -202,6 +221,35 @@ namespace Chess
                 }
             }
             return null;
+        }
+        public static Piece GetSameKing(PieceColor c)
+        {
+            foreach (Piece p in board)
+            {
+                if (p != null)
+                {
+                    if (p.PieceType == ChessPiece.King && p.Color == c)
+                    {
+                        return p;
+                    }
+                }
+            }
+            return null;
+        }
+        public static List<Piece> GetPiecesOfColor(PieceColor C)
+        {
+            List<Piece> pieces = new List<Piece>();
+            foreach(Piece p in board)
+            {
+                if(p != null)
+                {
+                    if(p.Color == C)
+                    {
+                        pieces.Add(p);
+                    }
+                }
+            }
+            return pieces;
         }
     }
 }

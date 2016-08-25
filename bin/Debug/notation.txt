@@ -1,8 +1,12 @@
-
 Rla1 Rlh1 Rda8 Rdh8
 Nlb1 Nlg1 Ndb8 Ndg8
 Blc1 Blf1 Bdc8 Bdf8
 Kld1 Kdd8 Qle1 Qde8
-
-c1 g5
-g5 e7
+Pla2 Plb2 Plc2 Pld2 Ple2 Plf2 Plg2 Plh2
+Pda7 Pdb7 Pdc7 Pdd7 Pde7 Pdf7 Pdg7 Pdh7
+ 
+a1 a7
+a7 d7
+e8 d7
+d7 f5
+f5 f3

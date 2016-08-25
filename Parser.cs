@@ -12,27 +12,26 @@ namespace Chess
         protected static List<string[]> instructionLine = new List<string[]>();
         
         protected static List<string> output = new List<string>();
-        
-        
+
+
         //protected static Dictionary<char, string> chessPieces = new Dictionary<char, string>()
         //{
         //    {'Q', "Queen" },
         //    {'K', "King" },
-        //    {'B', "Bishop" },
-        //    {'N', "Knight" },
+        //    {'B', "Bishop"},
+        //    {'N', "Knight"},
         //    {'R', "Rook" },
         //    {'P', "Pawn" },
         //    {'l', "White" },
         //    {'d', "Black" }
         //};
         protected int piecePlacement = 4;
-        
         protected int pieceLocation = 2;
-       
-        protected int pieceIndex = 0;
-        protected int pieceColorIndex = 1;
-        protected int pieceYPlacement = 3;
-        protected int pieceXPlacement = 2;
+
+        //protected int pieceIndex = 0;
+        //protected int pieceColorIndex = 1;
+        //protected int pieceYPlacement = 3;
+        //protected int pieceXPlacement = 2;
 
         protected string[] fileInfo;
         private Piece[,] gameBoard;
@@ -51,7 +50,8 @@ namespace Chess
             }
             Seperate();
             Controller.PlacePieces();
-            Controller.MovePieces();
+            //Controller.MovePieces();
+            Gameplay.GameControl();
         }
         private void Seperate()
         {
@@ -75,23 +75,22 @@ namespace Chess
             }
             //Write();
         }
-
         //private string ConvertCharacter(char c)
         //{
         //    return chessPieces[c];
         //}
-        private void ConvertMovement(string[] s)
-        {
+        //private void ConvertMovement(string[] s)
+        //{
             
-        }
-        private void Write()
-        {
-            Console.WriteLine("Writing moves");
-            foreach (string s in output)
-            {
-                Console.WriteLine(s);
-            }
-        }
+        //}
+        //private void Write()
+        //{
+        //    Console.WriteLine("Writing moves");
+        //    foreach (string s in output)
+        //    {
+        //        Console.WriteLine(s);
+        //    }
+        //}
     }
 }
 

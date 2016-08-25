@@ -12,14 +12,17 @@ namespace Chess.Pieces
         {
         }
 
-        public override bool CheckValidMove(string Destination)
+        public override bool CheckValidMove(Location Destination)
         {
             if( MoveValidity.CheckRookMove(Location, Destination))
-            {
-                Location = Destination;
+            {                
                 return true;
             }
             return false;
+        }
+        public override void MoveLocation(Location Destination)
+        {
+            Location = Destination;
         }
     }
 }
